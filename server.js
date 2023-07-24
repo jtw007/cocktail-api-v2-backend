@@ -1,18 +1,29 @@
 require('dotenv').config()
 const express = require('express')
-const axios = require('axios')
 const cors = require('cors')
+const axios = require('axios')
 
 //config express app
 const app = express()
 const PORT = process.env.PORT || 8000
-
-const API_KEY = process.env.API_KEY
-console.log(`API_KEY${API_KEY}`)
-
+// request body parsing
 app.use(express.json())
 //cross origin resource sharing
 app.use(cors())
+
+const API_KEY = process.env.API_KEY
+
+const middleWare = (req, res, next) => {
+    console.log('im a middleware 😬!')
+    res.locals.myData = '👾'
+    next()
+}
+  
+// GET / -- test index route
+app.get('/', middleWare, (req, res) => {
+    console.log(res.locals)
+    res.json({ msg: 'hello backend 🤖' })
+})
 
 // GET 
 app.get('/', async(req,res) => {

@@ -25,8 +25,10 @@ app.get('/', middleWare, (req, res) => {
     res.json({ msg: 'hello backend 🤖' })
 })
 
+//prevent default function
+
 // GET 
-app.get('/', async(req,res) => {
+app.get('/', async(req,res,) => {
     try {
         const name = req.query.search
         const url = `https://api.api-ninjas.com/v1/cocktail?name=${name}`

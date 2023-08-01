@@ -1,0 +1,8 @@
+sequelize model: --name user --attributes username:string,email:string,password:string
+
+---------- project models ----------
+model for cocktails
+sequelize model:create --name favorite --attributes name:string,ingredients:string,instructions:string,userId:integer  
+
+model for comments
+sequelize model:create --name comment --attributes userName:string,comment:string,userId:integer,favoriteId:integer 

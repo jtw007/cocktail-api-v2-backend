@@ -13,15 +13,23 @@ router.get('/', (req, res) => {
 router.post('/register', async (req, res) => {
     try {
         //check if user exists already
-
+        const findUser = await db.user.findOne({
+            where: {
+                email: req.body.email
+            }
+        })
+        console.log(findUser)
         //don't allow emails to register twice
+        if(findUser) return res.status(400).json({ msg: 'User already exists' })
 
         //hash password
         const password = req.body.password
+        const saltRounds = 12
+        const hasedPassword = await bcrypt.hash(password, saltRounds)
 
         //create new user
         const newUser = await db.user.create({
-            
+            name: req.body.name,
         })
 
         //create jwt payload

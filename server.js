@@ -26,6 +26,9 @@ app.get('/', middleWare, (req, res) => {
     res.json({ msg: 'hello backend 🤖' })
 })
 
+//controllers
+app.use('/users.js', require('./controllers/users'))
+
 //prevent default function
 
 // GET 

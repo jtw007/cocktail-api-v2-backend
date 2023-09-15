@@ -81,6 +81,7 @@ router.post('/login', async (req,res) => {
 
         //sign jwt and send back
         const token = await jwt.sign(payload, process.env.JWT_SECRET)
+        console.log(`Token ${token}`)
 
         res.json({ token })
 
@@ -89,3 +90,10 @@ router.post('/login', async (req,res) => {
         res.status(500).json({ msg: 'Server error '})
     }
 })
+
+//GET /auth-locked - will redirect if bad jwt token is found
+router.get('/auth-locked', authLockedRoute, (req, res) => {
+    res.json( { msg: 'Welcome to the private route!' })
+})
+
+module.exports = router

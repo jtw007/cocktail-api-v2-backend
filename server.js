@@ -27,7 +27,7 @@ app.get('/', middleWare, (req, res) => {
 })
 
 //controllers
-app.use('/users.js', require('./controllers/users'))
+app.use('/users.js', require('./controllers/api-v1/users'))
 
 //prevent default function
 

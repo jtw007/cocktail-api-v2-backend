@@ -10,7 +10,9 @@ const PORT = process.env.PORT || 8000
 // request body parsing
 app.use(express.json())
 //cross origin resource sharing
-app.use(cors())
+app.use(cors({
+    origin: 'http://localhost:3000'
+}))
 
 const API_KEY = process.env.API_KEY
 
@@ -27,7 +29,7 @@ app.get('/', middleWare, (req, res) => {
 })
 
 //controllers
-app.use('/users.js', require('./controllers/api-v1/users'))
+app.use('/api-v1/users.js', require('./controllers/api-v1/users'))
 
 //prevent default function
 

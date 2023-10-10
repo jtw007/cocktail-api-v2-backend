@@ -29,14 +29,14 @@ router.post('/register', async (req, res) => {
 
         //create new user
         const newUser = await db.user.create({
-            name: req.body.name,
+            username: req.body.name,
             email: req.body.email,
             password: hashedPassword
         })
 
         //create jwt payload
         const payload = {
-            name: req.body.name,
+            username: req.body.name,
             email: newUser.email,
             id: newUser.id
         }
@@ -47,7 +47,7 @@ router.post('/register', async (req, res) => {
         res.json({ token })
     } catch(error) {
         console.log(error)
-        res.status(500).json({ msg: 'Server error' })
+        res.status(500).json({ msg: 'register Server error' })
     }
 })
 
@@ -74,20 +74,20 @@ router.post('/login', async (req,res) => {
 
         //create jwt payload
         const payload = {
-            name: foundUser.name,
+            username: foundUser.username,
             email: foundUser.email,
             id: foundUser.id
         }
 
         //sign jwt and send back
         const token = await jwt.sign(payload, process.env.JWT_SECRET)
-        console.log(`Token ${token}`)
+        // console.log(`Token ${token}`)
 
         res.json({ token })
 
     } catch(error) {
         console.log(error)
-        res.status(500).json({ msg: 'Server error '})
+        res.status(500).json({ msg: 'Server error'})
     }
 })
 

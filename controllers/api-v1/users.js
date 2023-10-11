@@ -36,7 +36,7 @@ router.post('/register', async (req, res) => {
 
         //create jwt payload
         const payload = {
-            username: req.body.name,
+            username: newUser.body.name,
             email: newUser.email,
             id: newUser.id
         }
@@ -47,7 +47,7 @@ router.post('/register', async (req, res) => {
         res.json({ token })
     } catch(error) {
         console.log(error)
-        res.status(500).json({ msg: 'register Server error' })
+        res.status(500).json({ msg: 'Server error' })
     }
 })
 

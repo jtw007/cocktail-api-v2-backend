@@ -43,7 +43,6 @@ router.delete('/:id', async (req,res) => {
                 id: req.params.id
             },
         }) 
-        res.redirect(req.get('referer'))  
     } catch(error) {
         console.log(error.message)
         res.status(500).send('Server error 🥲')

@@ -7,7 +7,7 @@ const authLockedRoute = require('./authLockedRoute')
 //POST user/faves - CREATE receive the name of the cocktail and add it to database
 router.post('/', authLockedRoute, async (req, res) => {
     try {
-        await db.favorite.findOrCreate({
+        const faveCocktails = await db.favorite.findOrCreate({
             where: {
                 name: req.body.name,
                 ingredients: req.body.ingredients,
@@ -15,6 +15,7 @@ router.post('/', authLockedRoute, async (req, res) => {
                 userId: res.locals.user.id
             }
         })
+        res.json(faveCocktails)
     } catch(error) {
         console.log(error)
         res.status(500).json({ msg: 'Server error' })
@@ -43,6 +44,7 @@ router.delete('/:id', async (req,res) => {
                 id: req.params.id
             },
         }) 
+        res.send(deleteFave)
     } catch(error) {
         console.log(error.message)
         res.status(500).send('Server error 🥲')

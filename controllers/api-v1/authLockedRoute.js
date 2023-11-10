@@ -7,6 +7,9 @@ const authLockedRoute = async (req, res, next) => {
     // jwt from client
     console.log(req)
     const authHeader = req.headers.authorization
+    if (!authHeader) {
+      return res.status(401).json({ msg: 'No authorization header found' });
+    }
     // will throw to catch if jwt can't be verified
     const decode = await jwt.verify(authHeader, process.env.JWT_SECRET)
     // find user from db

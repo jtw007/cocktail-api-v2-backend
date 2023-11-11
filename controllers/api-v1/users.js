@@ -29,14 +29,14 @@ router.post('/register', async (req, res) => {
 
         //create new user
         const newUser = await db.user.create({
-            username: req.body.name,
+            username: req.body.username,
             email: req.body.email,
             password: hashedPassword
         })
 
         //create jwt payload
         const payload = {
-            username: newUser.body.name,
+            username: newUser.body.username,
             email: newUser.email,
             id: newUser.id
         }

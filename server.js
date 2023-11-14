@@ -29,8 +29,10 @@ app.get('/', middleWare, (req, res) => {
 //controllers
 app.use('/api-v1/users', require('./controllers/api-v1/users'))
 app.use('/api-v1/favorites', require('./controllers/api-v1/favorites'))
+    // Google oauth
+app.use('/api-v1/oauth', require('./controllers/api-v1/oauth'))
+app.use('/api-v1/request', require('./controllers/api-v1/request'))
 
-//prevent default function
 
 // GET 
 app.get('/', async(req,res,) => {
